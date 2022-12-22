@@ -37,9 +37,15 @@ namespace LanguageTest.Features
             var array = new int[] { 1, 2, 3, 4, 5 };
             var slice1 = array[2..^3];    // array[new Range(2, new Index(3, fromEnd: true))]
             var slice2 = array[..^3];     // array[Range.EndAt(new Index(3, fromEnd: true))]
+            var slice7 = array[..2];
             var slice3 = array[2..];      // array[Range.StartAt(2)]
             var slice4 = array[..];       // array[Range.All]
             var slice5 = array[st..end];
+
+            var midpoint = array.Length / 2;
+            var left = array[..midpoint];
+            var right = array[midpoint..^0];
+            var right2 = array[midpoint..];
         }
     }
 }
