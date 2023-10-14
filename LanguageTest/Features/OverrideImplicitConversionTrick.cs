@@ -29,7 +29,7 @@ public class Derived : Base, IFeature
         // calls method with Double param
         d.DoWork(val);
 
-r        // cals base method with int param (or overriden one if exists)
+        // cals base method with int param (or overriden one if exists)
         ((Base)d).DoWork(val);
     }
 
