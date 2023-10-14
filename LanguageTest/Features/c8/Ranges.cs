@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanguageTest.Features
+namespace LanguageTest.Features.c8
 {
     internal class Ranges : IFeature
     {

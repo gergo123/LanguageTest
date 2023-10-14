@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace LanguageTest.Features
 {
-    internal class TypesFeature
+    internal class ValueTypeParam : IFeature
     {
+        public void Action()
+        {
+            test(123);
+        }
+
         public void test(ValueType valueType)
         {
             var isDec = valueType is float || valueType is double;
