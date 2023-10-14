@@ -10,7 +10,13 @@ namespace LanguageTest.Features
     {
         public void Action()
         {
-            test(123);
+            test(123_555);
+            test('a');
+            test(true);
+            test(1d);
+            test(1f);
+            test(DateTime.Now);
+            test(0b_1001_0000);
         }
 
         public void test(ValueType valueType)
