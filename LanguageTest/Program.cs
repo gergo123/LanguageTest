@@ -1,9 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using LanguageTest;
 using LanguageTest.Features;
-using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 Console.WriteLine("Hello, World!");
 
@@ -16,10 +13,10 @@ foreach (Type assemblyType in assemblyTypes.Where(x => !x.IsInterface && x.GetIn
     //IFeature feature = (IFeature)Activator.CreateInstance(assemblyType);
     //feature.Action();
 
-    Object o = assembly.CreateInstance(assemblyType.FullName, false, BindingFlags.ExactBinding,
-        null, new object[] { }, null, null);
+    Object o = assembly.CreateInstance(assemblyType.FullName!, false, BindingFlags.ExactBinding,
+        null, new object[] { }, null, null)!;
 
-    var mInfo = assembly.GetType(assemblyType.FullName).GetMethod(nameof(IFeature.Action));
+    var mInfo = assembly.GetType(assemblyType.FullName!)!.GetMethod(nameof(IFeature.Action));
     mInfo.Invoke(o, null);
     Console.WriteLine($"""------- end {assemblyType.FullName} -------""");
 }
