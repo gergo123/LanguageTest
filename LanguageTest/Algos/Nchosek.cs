@@ -23,7 +23,8 @@ public class Comparer : IEqualityComparer<ThreeKey>
 
     public int GetHashCode([DisallowNull] ThreeKey obj)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        return -1;
     }
 }
 
