@@ -11,11 +11,6 @@ public class DateTimeParsing : IFeature
 {
     public void Action()
     {
-        var culture = new CultureInfo("en-US");
-        CultureInfo.DefaultThreadCurrentCulture = culture;
-        CultureInfo.DefaultThreadCurrentUICulture = culture;
-        Thread.CurrentThread.CurrentUICulture = culture;
-
         // country code list https://www.andiamo.co.uk/resources/iso-language-codes/
 
         // gmt+2 a cel
