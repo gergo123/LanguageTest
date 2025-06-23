@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LanguageTest.Features;
 
@@ -13,18 +14,15 @@ public class DateTimeParsing : IFeature
     {
         // country code list https://www.andiamo.co.uk/resources/iso-language-codes/
 
-        // gmt+2 a cel
-        // ugy hogy a current culture mind1, de akkor legyen egy gmt+4
-        var gmt4 = CultureInfo.CreateSpecificCulture("ar-ae");
-        var dt = DateTimeOffset.ParseExact("10/4/22 18:35", "M/d/yy H:m", gmt4, DateTimeStyles.AssumeLocal);
+        var timezone = TimeZoneInfo.FindSystemTimeZoneById("Europe/Budapest");
+        var date = DateTime.Parse("10/4/22 18:35");
+        var newUtcDateInTimeZone = ConvertToUtcFromTimeZone(date, timezone);
+    }
 
-        var dt2 = DateTime.ParseExact("10/4/22 18:35", "M/d/yy H:m", gmt4, DateTimeStyles.AssumeLocal);
-        var dt3 = DateTime.Parse("10/4/22 18:35", gmt4);
-        var tz = TimeZoneInfo.ConvertTime(dt2, TimeZoneInfo.CreateCustomTimeZone("blabla", TimeSpan.FromHours(4), "disp", "daasd"));
-
-        // convert any time and date to specified timezone with keeping hours intact
-        var dt1 = DateTimeOffset.Parse("10/4/22 18:35");
-        var tz1 = TimeZoneInfo.ConvertTime(dt1, TimeZoneInfo.FindSystemTimeZoneById("West Asia Standard Time"));
-        var a = tz1.ToUniversalTime();
+    public DateTime ConvertToUtcFromTimeZone(DateTime date, TimeZoneInfo timeZone)
+    {
+        return TimeZoneInfo.ConvertTimeToUtc(date,
+           date.Kind == DateTimeKind.Local ? TimeZoneInfo.Local :
+           date.Kind == DateTimeKind.Utc ? TimeZoneInfo.Utc : timeZone);
     }
 }
